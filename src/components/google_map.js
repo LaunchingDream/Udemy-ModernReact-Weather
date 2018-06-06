@@ -1,19 +1,20 @@
 import React from 'react';
-import {GoogleMapLoader, GoogleMap} from 'react-google-maps';
+import { withGoogleMap, GoogleMap } from "react-google-maps"
+
+const MyGoogleMap = withGoogleMap(props => (
+  <GoogleMap
+    defaultCenter = { { lat: props.lat, lng: props.lon} }
+    defaultZoom = { 12 }
+  />
+));
 
 export default (props) => {
   return (
-    <GoogleMapLoader
-      containerElement={ <div style={{ height: `100%` }} /> }
-      googleMapElement={
-        <GoogleMap
-          defaultZoom={8}
-          defaultCenter={{ lat: props.lat, lng: props.lon}}
-        >
-          
-        </GoogleMap>
-
-      }
+    <MyGoogleMap
+      lat={props.lat}
+      lon={props.lon}
+      containerElement={ <div style={{ height: `200px`, width: '300px' }} /> }
+      mapElement={ <div style={{ height: `100%` }} /> }
     />
   );
 }
